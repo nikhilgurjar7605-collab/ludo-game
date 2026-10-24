@@ -101,7 +101,7 @@ function enterBirthdaySite(){const gate=$('#movieGate');if(!gate||gate.classList
 function showBirthdayLock(){ $('#movieActions').classList.add('movie-hidden');$('#birthdayLock').classList.add('visible');$('#movieSubtitle').textContent='A little birthday secret stands between you and your surprise.';$('#birthdayCode').focus({preventScroll:true})}
 document.body.classList.add('locked');
 $('#continueToLock').addEventListener('click',showBirthdayLock);
-$('#skipIntro').addEventListener('click',()=>{if($('#birthdayLock').classList.contains('visible')){enterBirthdaySite()}else{showBirthdayLock();$('#skipIntro').textContent='Skip & enter ↗';$('#skipIntro').onclick=enterBirthdaySite}});
+$('#skipIntro').addEventListener('click',()=>{if(!$('#birthdayLock').classList.contains('visible'))showBirthdayLock();else $('#birthdayCode').focus({preventScroll:true})});
 $('#birthdayLock').addEventListener('submit',e=>{e.preventDefault();const value=$('#birthdayCode').value.replace(/[^0-9]/g,'');if(value==='2510'){enterBirthdaySite()}else{$('#codeError').textContent='Not quite! Try the date in DD-MM format 💗';$('#birthdayCode').select()}});
 buildMovieStars();
 
