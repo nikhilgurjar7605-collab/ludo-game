@@ -39,6 +39,39 @@ body.locked{overflow:hidden}
 @media(max-width:480px){.movie-gate{padding:18px}.movie-content{padding:48px 4px 24px}.movie-tag{letter-spacing:.24em;font-size:.58rem;margin-bottom:24px}.movie-title{font-size:clamp(2.4rem,12vw,4rem)}.movie-subtitle{max-width:290px}.movie-skip{top:14px;right:14px}.movie-rule{margin:22px auto}}
 @media(prefers-reduced-motion:reduce){.movie-gate *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+
+/* Personalised cinematic scenes, letter reveal, gallery lightbox and wish cake */
+.movie-content{max-width:680px}
+.movie-content:before{content:"";position:absolute;inset:-10% -25%;background:linear-gradient(110deg,transparent 35%,#fff2 49%,transparent 62%);transform:translateX(-130%);pointer-events:none;animation:cinemaSweep 2.8s 1s ease-in-out both}
+@keyframes cinemaSweep{to{transform:translateX(130%)}}
+.movie-title{text-wrap:balance}
+.memory-line{border-left:2px solid #ffb9d05e;padding:2px 0 2px 20px;margin:22px 0;position:relative}
+.memory-line:before{content:"✦";position:absolute;left:-7px;top:0;color:#f6d58a;background:#21102c;font-size:.8rem}
+.envelope-card{margin:24px auto;padding:25px 18px;max-width:520px;text-align:center;border:1px solid #ffb9d05c;border-radius:24px;background:linear-gradient(145deg,#ffb9d016,#ffffff08);cursor:pointer;transition:transform .25s,box-shadow .25s}
+.envelope-card:hover{transform:translateY(-4px);box-shadow:0 16px 45px #09051155}
+.envelope-emoji{font-size:clamp(3.5rem,12vw,5rem);filter:drop-shadow(0 0 22px #ff6f9f44);animation:bob 2.7s ease-in-out infinite}
+.envelope-card p{color:var(--muted);line-height:1.7;margin:10px 0 0}
+.letter-overlay{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:18px;background:#080610d9;backdrop-filter:blur(12px)}
+.letter-overlay.open{display:grid;animation:arrive .3s both}
+.letter-paper{width:min(100%,560px);max-height:85svh;overflow:auto;padding:clamp(22px,6vw,42px);border:1px solid #f6d58a7a;border-radius:22px;background:linear-gradient(145deg,#fff7ed,#ffe8ef);color:#41223f;box-shadow:0 25px 100px #0009}
+.letter-paper h3{font-size:clamp(1.8rem,6vw,2.6rem);margin:0 0 18px;color:#7c315d}
+.letter-paper p{font-family:'Playfair Display',serif;font-size:1.12rem;line-height:1.9;margin:0;white-space:pre-line}
+.letter-paper .btn{color:#41223f;border-color:#d8b5c6;background:#ffffff8c}
+.gallery-view{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:18px;background:#05040bdc;backdrop-filter:blur(12px)}
+.gallery-view.open{display:grid}
+.gallery-frame{width:min(100%,900px);height:min(82svh,780px);position:relative;display:grid;place-items:center}
+.gallery-frame img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 20px 90px #0009}
+.gallery-close{position:absolute;right:0;top:-42px;border:1px solid #ffffff55;background:#ffffff18;color:white;border-radius:99px;padding:10px 14px}
+.photo.has-image{cursor:zoom-in}
+.photo.has-image:after{content:"↗";position:absolute;right:12px;top:12px;z-index:2;background:#130d27a8;border-radius:50%;width:30px;height:30px;display:grid;place-items:center}
+.cake-stage{max-width:380px;margin:10px auto 20px;text-align:center;padding:15px 12px 20px;border:1px solid #ffb9d040;border-radius:24px;background:radial-gradient(ellipse at 50% 100%,#ff6f9f1c,transparent 65%)}
+.cake{font-size:clamp(5.5rem,22vw,8rem);line-height:1.2;cursor:pointer;display:inline-block;filter:drop-shadow(0 12px 22px #ff6f9f30);transition:transform .2s}
+.cake:active{transform:scale(.94)}
+.cake-help{font-size:.8rem;color:var(--muted);line-height:1.7}
+.wish-message{display:none;color:var(--gold);font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.7;margin-top:12px}
+.wish-message.show{display:block;animation:revealText .6s both}
+@media(max-width:480px){.letter-overlay,.gallery-view{padding:12px}.letter-paper{border-radius:18px}.gallery-frame{height:75svh}}
+
 </style></head><body>
 
 <div class="movie-gate" id="movieGate" aria-label="Birthday surprise intro">
@@ -70,8 +103,8 @@ body.locked{overflow:hidden}
 <section class="chapter"><div class="kicker">Chapter 02 · little things, big memories</div><h2>Our kind of nostalgia 📸</h2><p class="lead">The little things were the best things. Ordinary moments that somehow became unforgettable later.</p><div class="photo-grid"><div class="photo"><img alt="Bus ride memory"><div class="caption"><span class="photo-icon">🚌</span><b>Those bus rides</b><br><label class="upload">Add photo<input type="file" accept="image/*"></label></div></div><div class="photo"><img alt="Truth or Dare memory"><div class="caption"><span class="photo-icon">😂</span><b>Truth or Dare</b><br><label class="upload">Add photo<input type="file" accept="image/*"></label></div></div><div class="photo"><img alt="School friends"><div class="caption"><span class="photo-icon">✨</span><b>Random chaos</b><br><label class="upload">Add photo<input type="file" accept="image/*"></label></div></div><div class="photo"><img alt="Favourite memory"><div class="caption"><span class="photo-icon">💗</span><b>Just us being us</b><br><label class="upload">Add photo<input type="file" accept="image/*"></label></div></div></div><div class="glass"><div class="moment"><div class="moment-icon">🚌</div><div><h3>Those bus rides</h3><p>Sitting ahead and behind each other like it was the most normal thing ever.</p></div></div><div class="moment"><div class="moment-icon">🤭</div><div><h3>Truth or Dare</h3><p>Random questions, silly dares, and laughs that made an ordinary day fun.</p></div></div><div class="moment"><div class="moment-icon">🌼</div><div><h3>School-day madness</h3><p>Some memories don't need a big event. The small moments are the ones that stick.</p></div></div></div></section>
 <section class="chapter"><div class="kicker">Chapter 03 · one little secret</div><h2>A secret, finally told 🤫</h2><p class="lead">There was one thing I kept to myself for quite a while…</p><div class="glass"><div class="letter">You were my crush back then, and I kept that little secret for a long time. I finally told you after Class 10. <strong>🤭</strong>
 
-Looking back, it's one of those unexpected chapters in our school story—and definitely not something I'll forget!</div><div style="margin-top:22px"><button class="btn primary" id="secretBtn">Psst… one more thing</button></div><div class="secret" id="secretText">No matter how much time passes, I hope we always get to laugh about the old school days. Thanks for being part of those memories. 🤝💗</div></div><p class="hint">A small confession from the past, shared with respect and a smile.</p></section>
-<section class="chapter"><div class="kicker">Final chapter · a wish for you</div><h2>Today is all about you, Payal 💖</h2><div class="gift">🎁</div><div class="glass letter">Hey, Payal! 🎂❤️
+Looking back, it's one of those unexpected chapters in our school story—and definitely not something I'll forget!</div><div style="margin-top:22px"><button class="btn primary" id="secretBtn">Psst… one more thing</button></div><div class="secret" id="secretText">No matter how much time passes, I hope we always get to laugh about the old school days. Thanks for being part of those memories. 🤝💗</div></div><div class="envelope-card" id="openLetter" role="button" tabindex="0" aria-label="Open your hidden birthday letter"><div class="envelope-emoji">💌</div><h3 style="margin:8px 0 0">A letter just for you</h3><p>There's one more little message waiting inside…<br><b style="color:var(--pink)">Tap to open the envelope</b></p></div><p class="hint">A small confession from the past, shared with respect and a smile.</p></section>
+<section class="chapter"><div class="kicker">Final chapter · a wish for you</div><h2>Today is all about you, Payal 💖</h2><div class="gift">🎁</div><div class="cake-stage"><div class="cake" id="birthdayCake" role="button" tabindex="0" aria-label="Tap the birthday cake to light candles">🎂</div><div class="cake-help" id="cakeHelp">Tap the cake to light the candles, then make a wish ✨</div><button class="btn primary" id="makeWish" type="button">Make a wish ✨</button><div class="wish-message" id="wishMessage">May every little wish find its way to you, Payal. 💗</div></div><div class="glass letter">Hey, Payal! 🎂❤️
 
 From Class 5 to our crazy bus rides and Truth or Dare 😂, we've collected some unforgettable memories. And there's that little secret I finally told you after Class 10. 🤭
 
@@ -80,7 +113,17 @@ I'm glad we became friends. Keep smiling, stay happy, and never stop being you!
 <strong>Happy Birthday, Payal! 🎀</strong>
 
 May this year bring you the kind of happiness that stays, people who make you feel loved, courage for every new beginning, and a thousand little reasons to smile. You deserve beautiful things—not just today, but all year long. ✨</div><div class="actions"><button class="btn primary" id="celebrate">One last surprise 🎉</button><button class="btn" id="replay">Read it again ↺</button></div><div class="secret" id="finalWish" style="text-align:center">✨ A whole sky full of good things for you, Payal. Keep shining. ✨</div></section>
-<div class="nav"><button class="btn" id="back">← Back</button><button class="btn primary" id="next">Next chapter →</button></div><div class="end">MADE WITH NOSTALGIA, FRIENDSHIP & A LITTLE MAGIC ✦</div></main><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="nav"><button class="btn" id="back">← Back</button><button class="btn primary" id="next">Next chapter →</button></div><div class="end">MADE WITH NOSTALGIA, FRIENDSHIP & A LITTLE MAGIC ✦</div></main><div class="letter-overlay" id="letterOverlay" role="dialog" aria-modal="true" aria-labelledby="letterTitle"><div class="letter-paper"><h3 id="letterTitle">For you, Payal 💗</h3><p id="letterCopy">Dear Payal,
+
+Some of my favourite memories go all the way back to Class 5. The bus rides, the random Truth or Dare moments, and all the little things that became stories.
+
+Thank you for being part of that chapter of my life. I hope your next chapter is full of laughter, kind people, brave dreams, and more reasons to smile than you can count.
+
+Happy Birthday. Keep shining in your own way. ✨
+
+— From your friend 💌</p><div class="actions"><button class="btn primary" id="closeLetter" type="button">Keep this little letter ♡</button></div></div></div>
+<div class="gallery-view" id="galleryView" role="dialog" aria-modal="true" aria-label="Photo viewer"><div class="gallery-frame"><button class="gallery-close" id="closeGallery" type="button">Close ✕</button><img id="galleryImage" alt="Selected memory photo"></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)],chapters=all('.chapter');let page=0,ctx=null,soundOn=false;
 function stars(){for(let i=0;i<90;i++){let e=document.createElement('i');e.className='star';e.style.left=Math.random()*100+'%';e.style.top=Math.random()*100+'%';let z=Math.random()*2.5+1;e.style.width=z+'px';e.style.height=z+'px';e.style.opacity=Math.random();e.style.animationDelay=Math.random()*4+'s';$('#stars').append(e)}}
@@ -104,6 +147,24 @@ $('#continueToLock').addEventListener('click',showBirthdayLock);
 $('#skipIntro').addEventListener('click',()=>{if(!$('#birthdayLock').classList.contains('visible'))showBirthdayLock();else $('#birthdayCode').focus({preventScroll:true})});
 $('#birthdayLock').addEventListener('submit',e=>{e.preventDefault();const value=$('#birthdayCode').value.replace(/[^0-9]/g,'');if(value==='25'){enterBirthdaySite()}else{$('#codeError').textContent='Not quite! Try just the day number 💗';$('#birthdayCode').select()}});
 buildMovieStars();
+
+
+function openLetter(){const el=$('#letterOverlay');el.classList.add('open');document.body.style.overflow='hidden';confetti(24)}
+function closeLetter(){ $('#letterOverlay').classList.remove('open');document.body.style.overflow=document.body.classList.contains('locked')?'hidden':''}
+$('#openLetter').addEventListener('click',openLetter);
+$('#openLetter').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter()}});
+$('#closeLetter').addEventListener('click',closeLetter);
+$('#letterOverlay').addEventListener('click',e=>{if(e.target===$('#letterOverlay'))closeLetter()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLetter();$('#galleryView').classList.remove('open');document.body.style.overflow=document.body.classList.contains('locked')?'hidden':''}});
+all('.photo img').forEach(img=>img.addEventListener('click',()=>{if(!img.src||!img.closest('.photo').classList.contains('has-image'))return;$('#galleryImage').src=img.src;$('#galleryView').classList.add('open');document.body.style.overflow='hidden'}));
+function closeGallery(){ $('#galleryView').classList.remove('open');$('#galleryImage').removeAttribute('src');document.body.style.overflow=document.body.classList.contains('locked')?'hidden':''}
+$('#closeGallery').addEventListener('click',closeGallery);
+$('#galleryView').addEventListener('click',e=>{if(e.target===$('#galleryView'))closeGallery()});
+let candlesLit=false;
+function lightCake(){candlesLit=!candlesLit;$('#birthdayCake').textContent=candlesLit?'🕯️🎂🕯️':'🎂';$('#cakeHelp').textContent=candlesLit?'The candles are glowing… now make a wish!':'Tap the cake to light the candles, then make a wish ✨';if(candlesLit){floatMagic(18);confetti(35)}}
+$('#birthdayCake').addEventListener('click',lightCake);
+$('#birthdayCake').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();lightCake()}});
+$('#makeWish').addEventListener('click',()=>{if(!candlesLit)lightCake();$('#wishMessage').classList.add('show');$('#cakeHelp').textContent='Wish made. May it come true, Payal. 💗';confetti(160);floatMagic(28);toast('Your wish is in the stars ✨')});
 
 stars();floatMagic(20);setInterval(()=>floatMagic(5),6000);
 </script></body></html>
