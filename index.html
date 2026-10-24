@@ -54,11 +54,11 @@ body.locked{overflow:hidden}
     </div>
     <form class="movie-lock" id="birthdayLock">
       <div class="lock-label">Only Payal knows the key ✨</div>
-      <label for="birthdayCode" class="subtitle" style="display:block;margin-bottom:12px">Enter your birthday to unlock the surprise</label>
-      <input class="code-input" id="birthdayCode" name="birthdayCode" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="DD-MM" aria-describedby="codeError" required>
+      <label for="birthdayCode" class="subtitle" style="display:block;margin-bottom:12px">Enter the day you were born to unlock the surprise</label>
+      <input class="code-input" id="birthdayCode" name="birthdayCode" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="DD" aria-describedby="codeError" required>
       <button class="btn primary" style="width:100%;margin-top:12px" type="submit">Unlock my surprise ♡</button>
       <div class="lock-error" id="codeError" role="status" aria-live="polite"></div>
-      <p style="color:#bca9c9;font-size:.72rem;line-height:1.6;margin-top:5px">Hint: the day you were born 💗</p>
+      <p style="color:#bca9c9;font-size:.72rem;line-height:1.6;margin-top:5px">Hint: your birthday day, just two digits 💗</p>
     </form>
   </div>
 </div>
@@ -102,7 +102,7 @@ function showBirthdayLock(){ $('#movieActions').classList.add('movie-hidden');$(
 document.body.classList.add('locked');
 $('#continueToLock').addEventListener('click',showBirthdayLock);
 $('#skipIntro').addEventListener('click',()=>{if(!$('#birthdayLock').classList.contains('visible'))showBirthdayLock();else $('#birthdayCode').focus({preventScroll:true})});
-$('#birthdayLock').addEventListener('submit',e=>{e.preventDefault();const value=$('#birthdayCode').value.replace(/[^0-9]/g,'');if(value==='2510'){enterBirthdaySite()}else{$('#codeError').textContent='Not quite! Try the date in DD-MM format 💗';$('#birthdayCode').select()}});
+$('#birthdayLock').addEventListener('submit',e=>{e.preventDefault();const value=$('#birthdayCode').value.replace(/[^0-9]/g,'');if(value==='25'){enterBirthdaySite()}else{$('#codeError').textContent='Not quite! Try just the day number 💗';$('#birthdayCode').select()}});
 buildMovieStars();
 
 stars();floatMagic(20);setInterval(()=>floatMagic(5),6000);
